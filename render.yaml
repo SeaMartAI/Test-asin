@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: test-asin
+    runtime: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn -w 2 -b 0.0.0.0:$PORT test_asin_app:app"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.0
+    healthCheckPath: /
